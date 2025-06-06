@@ -1,0 +1,31 @@
+name: fork-source-controller
+id: ari:cloud:compass:83673fa7-fd28-4f4a-9738-f584064570a7:component/db43f86d-85fe-42e1-954d-457f5a4082b8/6fe5bf11-7d59-411a-9c2c-18d0a40fe311
+description: The GitOps Toolkit source management component
+configVersion: 1
+typeId: SERVICE
+fields:
+  tier: 4
+links:
+  - name: null
+    type: REPOSITORY
+    url: https://github.com/verygood-ops/fork-source-controller
+relationships:
+  DEPENDS_ON: []
+labels:
+  - source:github
+customFields:
+  - name: Logging
+    type: text
+    value: null
+  - name: Metrics
+    type: text
+    value: null
+  - name: Service Name
+    type: text
+    value: null
+  - name: Tracing
+    type: text
+    value: null
+  - name: coverage-metricSourceId
+    type: text
+    value: null
