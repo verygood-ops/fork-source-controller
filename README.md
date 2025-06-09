@@ -6,6 +6,16 @@
 [![license](https://img.shields.io/github/license/fluxcd/source-controller.svg)](https://github.com/fluxcd/source-controller/blob/main/LICENSE)
 [![release](https://img.shields.io/github/release/fluxcd/source-controller/all.svg)](https://github.com/fluxcd/source-controller/releases)
 
+## VGS fork
+
+```
+today=$(date +%Y%m%d)
+export IMG="190066226418.dkr.ecr.us-east-1.amazonaws.com/infra/source-controller:v0.34.0-$today" 
+make docker-build
+assume presidio/infra
+make docker-push
+```
+
 The source-controller is a Kubernetes operator, specialised in artifacts acquisition
 from external sources such as Git, Helm repositories and S3 buckets.
 The source-controller implements the

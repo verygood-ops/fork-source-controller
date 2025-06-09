@@ -1,10 +1,10 @@
 ARG BASE_VARIANT=alpine
-ARG GO_VERSION=1.19
-ARG XX_VERSION=1.1.2
+ARG GO_VERSION=1.24
+ARG XX_VERSION=1.6.1
 
 FROM --platform=$BUILDPLATFORM tonistiigi/xx:${XX_VERSION} AS xx
 
-FROM --platform=$BUILDPLATFORM golang:${GO_VERSION}-${BASE_VARIANT} as gostable
+FROM --platform=$BUILDPLATFORM golang:${GO_VERSION}-${BASE_VARIANT} AS gostable
 
 FROM gostable AS go-linux
 
@@ -17,7 +17,7 @@ RUN apk add --no-cache clang lld
 COPY --from=xx / /
 
 # build-go-mod can still be cached at build platform architecture.
-FROM build-base as build
+FROM build-base AS build
 
 ARG TARGETPLATFORM
 
@@ -61,7 +61,7 @@ RUN export CGO_LDFLAGS="-static -fuse-ld=lld" && \
 # Ensure that the binary was cross-compiled correctly to the target platform.
 RUN xx-verify --static /source-controller
 
-FROM alpine:3.17
+FROM alpine:3.22
 
 ARG TARGETPLATFORM
 RUN apk --no-cache add ca-certificates \
