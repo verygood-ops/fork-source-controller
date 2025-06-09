@@ -15,7 +15,7 @@ SKIP_COSIGN_VERIFICATION ?= false
 # e.g. '--push'.
 BUILD_ARGS ?=
 # Architectures to build images for
-BUILD_PLATFORMS ?= linux/amd64,linux/arm64,linux/arm/v7
+BUILD_PLATFORMS ?= linux/amd64 #,linux/arm64,linux/arm/v7
 
 # Go additional tag arguments, e.g. 'integration',
 # this is append to the tag arguments required for static builds
@@ -137,11 +137,12 @@ generate: controller-gen  ## Generate API code
 docker-build:  ## Build the Docker image
 	docker buildx build \
 		--platform=$(BUILD_PLATFORMS) \
-		-t $(IMG):$(TAG) \
+		--load \
+		-t $(IMG) \
 		$(BUILD_ARGS) .
 
 docker-push:  ## Push Docker image
-	docker push $(IMG):$(TAG)
+	docker push $(IMG)
 
 # Find or download controller-gen
 CONTROLLER_GEN = $(GOBIN)/controller-gen
